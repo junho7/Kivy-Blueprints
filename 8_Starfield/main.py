@@ -1,5 +1,4 @@
 import math
-from random import random
 
 from kivy import utils
 from kivy.app import App
@@ -10,6 +9,7 @@ from kivy.core.image import Image
 from kivy.graphics import Mesh
 from kivy.graphics.instructions import RenderContext
 from kivy.uix.widget import Widget
+import secrets
 
 NSTARS = 1000
 
@@ -25,9 +25,9 @@ class Star:
         self.reset()
 
     def reset(self):
-        self.angle = 2 * math.pi * random()
-        self.distance = 90 * random() + 10
-        self.size = 0.05 * random() + 0.05
+        self.angle = 2 * math.pi * secrets.SystemRandom().random()
+        self.distance = 90 * secrets.SystemRandom().random() + 10
+        self.size = 0.05 * secrets.SystemRandom().random() + 0.05
 
     def iterate(self):
         return range(self.j,

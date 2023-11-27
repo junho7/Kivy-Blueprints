@@ -2,13 +2,13 @@ from __future__ import division
 from collections import namedtuple
 import json
 import math
-from random import randint, random
 
 from kivy import platform
 from kivy.app import App
 from kivy.base import EventLoop
 from kivy.clock import Clock
 from kivy.config import Config
+import secrets
 
 Config.set('graphics', 'width', '960')
 Config.set('graphics', 'height', '540')
@@ -145,14 +145,14 @@ class Star(Particle):
     tex_name = 'star'
 
     def reset(self, created=False):
-        self.plane = randint(1, 3)
+        self.plane = secrets.SystemRandom().randint(1, 3)
 
         if created:
-            self.x = random() * self.parent.width
+            self.x = secrets.SystemRandom().random() * self.parent.width
         else:
             self.x = self.parent.width
 
-        self.y = random() * self.parent.height
+        self.y = secrets.SystemRandom().random() * self.parent.height
         self.size = 0.1 * self.plane
 
     def advance(self, nap):
@@ -175,13 +175,13 @@ class Trail(Particle):
     tex_name = 'trail'
 
     def reset(self, created=False):
-        self.x = self.parent.player_x + randint(-30, -20)
-        self.y = self.parent.player_y + randint(-10, 10)
+        self.x = self.parent.player_x + secrets.SystemRandom().randint(-30, -20)
+        self.y = self.parent.player_y + secrets.SystemRandom().randint(-10, 10)
 
         if created:
             self.size = 0
         else:
-            self.size = random() + 0.6
+            self.size = secrets.SystemRandom().random() + 0.6
 
     def advance(self, nap):
         self.size -= nap
@@ -249,8 +249,8 @@ class Enemy(Particle):
         elif self.parent.spawn_delay <= 0:
             self.active = True
             self.x = self.parent.width + 50
-            self.y = self.parent.height * random()
-            self.v = randint(-100, 100)
+            self.y = self.parent.height * secrets.SystemRandom().random()
+            self.v = secrets.SystemRandom().randint(-100, 100)
             self.parent.spawn_delay += 1
 
     def check_hit(self):

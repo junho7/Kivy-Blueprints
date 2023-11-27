@@ -1,5 +1,4 @@
 from __future__ import division
-import random
 
 from kivy.app import App
 from kivy.clock import Clock
@@ -13,6 +12,7 @@ from kivy.properties import (AliasProperty,
 from kivy.uix.image import Image as ImageWidget
 from kivy.uix.widget import Widget
 from kivy.utils import get_color_from_hex
+import secrets
 
 
 class MultiAudio:
@@ -152,7 +152,7 @@ class KivyBirdApp(App):
 
         for i in range(4):
             p = Pipe(x=self.root.width + (self.spacing * i))
-            p.ratio = random.uniform(0.25, 0.75)
+            p.ratio = secrets.SystemRandom().uniform(0.25, 0.75)
             self.root.add_widget(p)
             self.pipes.append(p)
 
@@ -167,7 +167,7 @@ class KivyBirdApp(App):
             p.x -= 96 * nap
             if p.x <= -64:  # pipe gone off screen
                 p.x += 4 * self.spacing
-                p.ratio = random.uniform(0.25, 0.75)
+                p.ratio = secrets.SystemRandom().uniform(0.25, 0.75)
 
         if self.test_game_over():
             snd_game_over.play()

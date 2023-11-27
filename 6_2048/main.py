@@ -1,5 +1,4 @@
 from __future__ import division
-import random
 
 from kivy.animation import Animation
 from kivy.app import App
@@ -9,6 +8,7 @@ from kivy.properties import ListProperty, NumericProperty
 from kivy.uix.widget import Widget
 from kivy.utils import get_color_from_hex
 from kivy.vector import Vector
+import secrets
 
 spacing = 15
 
@@ -77,7 +77,7 @@ class Board(Widget):
             print('Game over (tentative: no cells)')
             return
 
-        x, y = random.choice(empty_cells)
+        x, y = secrets.SystemRandom().choice(empty_cells)
         tile = Tile(pos=self.cell_pos(x, y),
                     size=self.cell_size)
         self.b[x][y] = tile
