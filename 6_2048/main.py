@@ -174,8 +174,7 @@ class Board(Widget):
         if not self.b:
             return
         for board_x, board_y in all_cells():
-            tile = self.b[board_x][board_y]
-            if tile:
+            if tile := self.b[board_x][board_y]:
                 tile.resize(pos=self.cell_pos(board_x, board_y),
                             size=self.cell_size)
 
