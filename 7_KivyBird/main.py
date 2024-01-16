@@ -1,4 +1,3 @@
-from __future__ import division
 import random
 
 from kivy.app import App
